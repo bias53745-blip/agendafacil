@@ -1,9 +1,0 @@
-{
-  "name": "agendafacil",
-  "version": "1.0.0",
-  "description": "Sistema de Agendamentos",
-  "main": "index.html",
-  "scripts": {
-    "start": "echo 'Projeto estático pronto!'"
-  }
-}
