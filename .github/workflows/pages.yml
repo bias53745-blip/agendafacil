@@ -25,27 +25,3 @@ jobs:
           publish_branch: gh-pages
           user_name: github-actions[bot]
           user_email: github-actions[bot]@users.noreply.github.com
-
-      - name: Configure GitHub Pages to use gh-pages branch (retry)
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          OWNER: ${{ github.repository_owner }}
-          REPO: ${{ github.event.repository.name }}
-        run: |
-          set -euo pipefail
-          for i in 1 2 3; do
-            echo "Attempt $i to configure Pages API..."
-            http_code=$(curl -s -o /dev/null -w "%{http_code}" -X PUT \
-              -H "Authorization: Bearer $GITHUB_TOKEN" \
-              -H "Accept: application/vnd.github+json" \
-              "https://api.github.com/repos/$OWNER/$REPO/pages" \
-              -d '{"source":{"branch":"gh-pages","path":"/"}}')
-            echo "HTTP status: $http_code"
-            if [ "$http_code" = "201" ] || [ "$http_code" = "200" ]; then
-              echo "Pages configured successfully"
-              exit 0
-            fi
-            sleep 5
-          done
-          echo "Failed to configure GitHub Pages after retries; check repository permissions or Page settings." >&2
-          exit 1
