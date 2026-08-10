@@ -5,6 +5,12 @@ on:
     branches:
       - main
 
+# Permissões necessárias para o deploy de Pages via Actions
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
