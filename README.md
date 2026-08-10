@@ -1,34 +1,19 @@
+# AgendaFácil
 
-    <meta charset="UTF-8">
-    <title>Painel de Agendamentos</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f4; }
-        h1 { color: #333; }
-        .container { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Painel de Agendamentos</h1>
-        <p>Bem-vindo ao seu sistema de agenda!</p>
-        <div id="app"></div>
-    </div>
-</body>
-</html>
- 
-    <meta charset="UTF-8">
-    <title>Painel de Agendamentos</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f4; }
-        h1 { color: #333; }
-        .container { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Painel de Agendamentos</h1>
-        <p>Bem-vindo ao seu sistema de agenda!</p>
-        <div id="app"></div>
-    </div>
-</body>
-</html>
+AgendaFácil é um sistema simples de agendamento com uma interface estática em HTML e JavaScript.
+
+## Descrição
+
+Este projeto exibe serviços disponíveis e permite adicionar novos serviços diretamente na página.
+
+## Como usar
+
+1. Abra `index.html` em um navegador.
+2. Adicione um novo serviço pelo formulário.
+3. Os serviços são exibidos automaticamente na tela.
+
+## Publicação
+
+O site está pronto para ser publicado no GitHub Pages a partir do branch `main`.
+
+A página estática é servida diretamente a partir do arquivo `index.html`.

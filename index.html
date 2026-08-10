@@ -1,20 +1,136 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <title>Painel de Agendamentos</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f4; }
-        h1 { color: #333; }
-        .container { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AgendaFácil</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      background: #f4f6f8;
+      color: #333;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    h1 {
+      margin: 0;
+      font-size: 2rem;
+      color: #1f2937;
+    }
+    .box {
+      background: #fff;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+      margin-bottom: 24px;
+    }
+    .services-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+    .service-card {
+      border: 1px solid #e5e7eb;
+      padding: 16px;
+      border-radius: 10px;
+      background: #fafafa;
+    }
+    .service-card h3 {
+      margin-top: 0;
+      margin-bottom: 8px;
+      font-size: 1.1rem;
+    }
+    .service-card p {
+      margin: 4px 0;
+      line-height: 1.4;
+    }
+    form {
+      display: grid;
+      gap: 12px;
+    }
+    label {
+      font-weight: 600;
+      margin-bottom: 4px;
+      display: block;
+    }
+    input {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+    button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 18px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 10px;
+      background: #2563eb;
+      color: #fff;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #1d4ed8;
+    }
+    .footer {
+      text-align: center;
+      color: #6b7280;
+      font-size: 0.95rem;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Painel de Agendamentos</h1>
-        <p>Bem-vindo ao seu sistema de agenda!</p>
-        <div id="app"></div>
+  <div class="container">
+    <header>
+      <h1>AgendaFácil</h1>
+      <p>Gerencie serviços de agendamento com facilidade.</p>
+    </header>
+
+    <div class="box">
+      <h2>Serviços disponíveis</h2>
+      <div id="services-list" class="services-list"></div>
     </div>
-    <script src="src/services.js"></script>
+
+    <div class="box">
+      <h2>Adicionar serviço</h2>
+      <form id="service-form">
+        <div>
+          <label for="name">Nome do serviço</label>
+          <input id="name" name="name" type="text" placeholder="Ex: Corte de Cabelo" required />
+        </div>
+        <div>
+          <label for="category">Categoria</label>
+          <input id="category" name="category" type="text" placeholder="Ex: Salão / Barbearia" required />
+        </div>
+        <div>
+          <label for="duration">Duração (minutos)</label>
+          <input id="duration" name="duration" type="number" min="1" placeholder="30" required />
+        </div>
+        <div>
+          <label for="price">Preço (R$)</label>
+          <input id="price" name="price" type="number" min="0" step="0.01" placeholder="50.00" required />
+        </div>
+        <button type="submit">Adicionar serviço</button>
+      </form>
+    </div>
+
+    <footer class="footer">
+      <p>AgendaFácil — Site publicado com GitHub Pages.</p>
+    </footer>
+  </div>
+
+  <script src="src/services.js"></script>
 </body>
 </html>
