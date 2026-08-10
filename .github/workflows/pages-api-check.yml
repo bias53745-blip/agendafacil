@@ -1,0 +1,43 @@
+name: Pages API check and record
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pages: write
+
+jobs:
+  pages-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Call Pages API and save response
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OWNER: ${{ github.repository_owner }}
+          REPO: ${{ github.event.repository.name }}
+        run: |
+          set -e
+          echo "Calling Pages API for $OWNER/$REPO..."
+          resp_file="pages_api_response.json"
+          http_code=$(curl -s -w "%{http_code}" -o "$resp_file" -X PUT \
+            -H "Authorization: Bearer $GITHUB_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/$OWNER/$REPO/pages" \
+            -d '{"source":{"branch":"gh-pages","path":"/"}}' || true)
+          echo "HTTP code: $http_code"
+          echo "HTTP code: $http_code" > pages_api_status.txt
+          echo "Response body:" >> pages_api_status.txt
+          cat "$resp_file" >> pages_api_status.txt
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add pages_api_status.txt || true
+          git commit -m "Record Pages API response" || echo "No changes to commit"
+          git push origin HEAD:main || echo "Push failed"
+
+      - name: Complete
+        run: echo "Completed Pages API check. See pages_api_status.txt in repo root if created."
