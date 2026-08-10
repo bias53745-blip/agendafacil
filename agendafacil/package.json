@@ -1,9 +1,0 @@
-{
-  "name": "agendafacil",
-  "version": "1.0.0",
-  "description": "Sistema de agendamento",
-  "main": "src/services.js",
-  "dependencies": {
-    "mysql2": "^3.0.0"
-  }
-}
