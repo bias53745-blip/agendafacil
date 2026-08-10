@@ -1,15 +1,13 @@
-name: Deploy static site to GitHub Pages
+name: Publish to GitHub Pages (gh-pages branch)
 
 on:
   push:
     branches:
       - main
 
-# Permissões necessárias para o deploy de Pages via Actions
 permissions:
-  contents: read
+  contents: write
   pages: write
-  id-token: write
 
 jobs:
   deploy:
@@ -19,13 +17,23 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup GitHub Pages
-        uses: actions/configure-pages@v4
-
-      - name: Upload artifact for GitHub Pages
-        uses: actions/upload-pages-artifact@v2
+      - name: Deploy to gh-pages branch
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          path: .
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: .
+          publish_branch: gh-pages
+          user_name: github-actions[bot]
+          user_email: github-actions[bot]@users.noreply.github.com
 
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v1
+      - name: Configure GitHub Pages to use gh-pages branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OWNER: ${{ github.repository_owner }}
+          REPO: ${{ github.event.repository.name }}
+        run: |
+          curl -s -X PUT \
+            -H "Authorization: Bearer $GITHUB_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/$OWNER/$REPO/pages" \
+            -d '{"source":{"branch":"gh-pages","path":"/"}}' || true
