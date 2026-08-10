@@ -1,6 +1,21 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
+
+    <meta charset="UTF-8">
+    <title>Painel de Agendamentos</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f4; }
+        h1 { color: #333; }
+        .container { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Painel de Agendamentos</h1>
+        <p>Bem-vindo ao seu sistema de agenda!</p>
+        <div id="app"></div>
+    </div>
+</body>
+</html>
+ 
     <meta charset="UTF-8">
     <title>Painel de Agendamentos</title>
     <style>
